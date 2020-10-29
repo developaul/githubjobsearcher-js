@@ -1,4 +1,4 @@
-import { form } from '../references.js';
+import { form, result } from '../references.js';
 
 class UI {
 
@@ -14,6 +14,43 @@ class UI {
             setTimeout( () => {
                 alert.remove();
             }, 3000 );
+        }
+    }
+
+    showVacancies( vacancies ) {
+        this.cleanHTML();
+
+        if( vacancies.length > 0 ) {
+            result.classList.add( 'grid' );
+
+            vacancies.forEach( vacancy => {
+                const { company, title, type, created_at, url } = vacancy;
+
+                result.innerHTML += `
+                    <div class="shadow bg-white p-6 rounded">
+                        <h2 class="text-2xl font-light mb-4">${title}</h2>
+                        <p class="font-bold uppercase">Compañia:  <span class="font-light normal-case">${company} </span></p>
+                        <p class="font-bold uppercase">Tipo de Contrato:   <span class="font-light normal-case">${type} </span></p>
+                        <p class="font-bold uppercase">Día de creación:   <span class="font-light normal-case">${created_at} </span></p>
+                        <a class="bg-teal-500 max-w-lg mx-auto mt-3 rounded p-2 block uppercase font-xl font-bold text-white text-center" href="${url}" target="_blank">Ver Vacante</a>
+                    </div>
+                `;
+            });
+
+            return;
+        }
+
+        result.classList.remove( 'grid' );
+        const noResult = document.createElement( 'p' );
+        noResult.classList.add( 'text-center', 'mt-10', 'text-gray-600', 'w-full' );
+        noResult.textContent = 'No hay vacantes, intenta con otro término de busqueda';
+
+        result.appendChild( noResult );
+    }
+
+    cleanHTML() {
+        while( result.firstChild ) {
+            result.removeChild( result.firstChild );
         }
     }
 
