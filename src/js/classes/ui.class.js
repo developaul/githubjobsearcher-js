@@ -33,8 +33,7 @@ class UI {
                         <p class="font-bold uppercase">Tipo de Contrato:   <span class="font-light normal-case">${type} </span></p>
                         <p class="font-bold uppercase">Día de creación:   <span class="font-light normal-case">${created_at} </span></p>
                         <a class="bg-teal-500 max-w-lg mx-auto mt-3 rounded p-2 block uppercase font-xl font-bold text-white text-center" href="${url}" target="_blank">Ver Vacante</a>
-                    </div>
-                `;
+                    </div>`;
             });
 
             return;
@@ -46,6 +45,30 @@ class UI {
         noResult.textContent = 'No hay vacantes, intenta con otro término de busqueda';
 
         result.appendChild( noResult );
+    }
+
+    showSpinner() {
+        this.cleanHTML();
+        result.classList.remove( 'grid' );
+
+        const spinner = document.createElement( 'div' );
+        spinner.classList.add( 'sk-fading-circle' );
+
+        spinner.innerHTML = `
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>`;
+
+        result.appendChild( spinner );
     }
 
     cleanHTML() {
